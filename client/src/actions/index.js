@@ -14,9 +14,8 @@ export function signupUser({ email, password }) {
         localStorage.setItem('token', response.data.token);
         browserHistory.push('/signedup');
       })
-      .catch((err) => {
-        console.log(err);
-        dispatch(signupError('Unknown error, this is a crappy place to catch errors.'))
+      .catch(error => {
+        dispatch(authError(error.response.data.error))
       });
   }
 }

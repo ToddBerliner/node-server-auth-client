@@ -51,7 +51,6 @@ class Signup extends Component {
 
     return (
       <form onSubmit={handleSubmit(this.handleValidFormSubmit)}>
-        {this.renderAlert()}
         <fieldset className="form-group">
           <Field
             name="email"
@@ -79,6 +78,7 @@ class Signup extends Component {
             label="Confirm Password">
           </Field>
         </fieldset>
+        {this.renderAlert()}
         <button action="submit" className="btn btn-primary">Sign Up</button>
       </form>
     );
@@ -101,7 +101,7 @@ const validate = values => {
 }
 
 function mapStateToProps(state) {
-  return { errorMessage: state.auth.signupError }
+  return { errorMessage: state.auth.error }
 }
 
 const signupForm = reduxForm({

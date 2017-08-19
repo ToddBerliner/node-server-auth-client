@@ -10,6 +10,8 @@ import Signin from './components/auth/signin';
 import Signout from './components/auth/signout';
 import Signup from './components/auth/signup';
 import Signedup from './components/auth/signedup';
+import Welcome from './components/welcome';
+import RequireAuth from './components/auth/require_auth';
 import Protected from './components/protected';
 import reducers from './reducers';
 
@@ -19,26 +21,12 @@ ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
     <Router history={browserHistory}>
       <Route path="/" component={App}>
-        <Route
-          path="signout"
-          component={Signout}
-        />
-        <Route
-          path="signin"
-          component={Signin}
-        />
-        <Route
-          path="signup"
-          component={Signup}
-        />
-        <Route
-            path="protected"
-            component={Protected}
-        />
-        <Route
-          path="signedup"
-          component={Signedup}
-        />
+        <IndexRoute component={Welcome}/>
+        <Route path="signout" component={Signout} />
+        <Route path="signin" component={Signin} />
+        <Route path="signup" component={Signup} />
+        <Route path="protected" component={RequireAuth(Protected)} />
+        <Route path="signedup" component={Signedup} />
       </Route>
     </Router>
   </Provider>
